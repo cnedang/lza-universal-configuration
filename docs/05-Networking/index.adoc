@@ -50,7 +50,7 @@ The LZA Universal Configuration networking architecture delivers significant bus
 
 .Architecture Selection Decision Tree
 
-[mermaid]
+[source,mermaid]
 ....
 flowchart TD
     Start(Base Network Configuration) --> Q1{IP efficiency critical?}
@@ -212,7 +212,7 @@ This hierarchical approach ensures organized IP space management and prevents CI
 [.text-center]
 .IPAM Hierarchical Pool Structure
 .IPAM Hierarchical Pool Structure
-[mermaid]
+[source,mermaid]
 ....
 graph TD
     classDef global fill:#D0E8FF,stroke:#333,stroke-width:1px;
@@ -277,12 +277,12 @@ Each VPC is configured with specific subnet CIDR allocations from IPAM and prede
 
 [.text-center]
 .Core Infrastructure VPCs and Traffic Flow
-[mermaid]
+[source,mermaid]
 ....
 graph TD
     internet["Internet"]
     services["AWS Services"]
-    
+
     subgraph aws["AWS Cloud"]
         tgw["Transit Gateway<br><i>Central hub</i>"]
         ingress["Ingress VPC<br><i>Internet inbound traffic</i>"]
@@ -292,11 +292,11 @@ graph TD
         shared["Shared Services VPC<br><i>Common services</i>"]
         workloads["Workload VPCs<br><i>Application resources</i>"]
     end
-    
+
     internet <-->|"Inbound traffic"| ingress
     egress <-->|"Outbound traffic"| internet
     endpoints <-->|"Private API access"| services
-    
+
     ingress <--> tgw
     tgw <-->|"Traffic inspection"| inspection
     egress <--> tgw
@@ -847,7 +847,7 @@ cloudWatch:
           threshold: 80
           treatMissingData: "notBreaching"
           snsTopicName: "SecurityMedium"
-          
+
         - alarmName: "NetworkFirewall-DroppedPackets"
           alarmDescription: "Network Firewall dropping packets"
           metricName: "DroppedPackets"

@@ -16,7 +16,7 @@ A landing zone is a well-architected, multi-account AWS environment that provide
 The Landing Zone Accelerator on AWS (LZA) Universal Configuration implements a comprehensive security framework built on AWS security best practices and services. This framework provides multiple layers of protection through preventative, detective and architectural controls at the organizational, account, and resource levels.
 
 .Defense-in-Depth Security Architecture
-[mermaid]
+[source,mermaid]
 ....
 graph TD
     classDef preventative fill:#FFD0D0,stroke:#333,stroke-width:1px;
@@ -64,7 +64,7 @@ This document outlines the key security components of the LZA Universal Configur
 
 * <<aws-control-tower-integration,AWS Control Tower Integration>>: How LZA extends Control Tower's security foundation
 * <<delegated-security-administration,Delegated Security Administration>>: Centralized security management through the Audit account
-* <<default-security-controls,Default Security Controls>>: Organization-wide preventative guardrails 
+* <<default-security-controls,Default Security Controls>>: Organization-wide preventative guardrails
 * <<identity-and-access-management,Identity and Access Management>>: Comprehensive authentication and authorization controls
 * <<data-protection,Data Protection>>: Safeguarding data throughout its lifecycle
 * <<security-information-and-event-management,Security Information and Event Management>>: Logging and monitoring framework
@@ -76,7 +76,7 @@ https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.
 
 The integration creates a symbiotic relationship where Control Tower provides link:https://docs.aws.amazon.com/controltower/latest/controlreference/mandatory-controls.html[standardized governance guardrails] and account provisioning, while the LZA Universal Configuration augments these capabilities with enhanced customization, security, and infrastructure automation. This architecture carefully respects Control Tower's boundaries - LZA's Service Control Policies (SCPs) are designed to complement Control Tower guardrails without causing conflicts, preserving the integrity of both systems.
 
-When an organization uses Control Tower's Account Factory to provision new accounts, the LZA Universal Configuration automatically applies additional customizations to these accounts. This extends beyond Control Tower's baseline by link:https://docs.aws.amazon.com/controltower/latest/userguide/roles-how.html[deploying specialized IAM roles], comprehensive networking configurations, and enhanced security monitoring services. For instance, while Control Tower configures basic AWS Config rules, LZA Universal Configuration configures additional Control Tower controls while also provisioning it's own AWS Config rules. 
+When an organization uses Control Tower's Account Factory to provision new accounts, the LZA Universal Configuration automatically applies additional customizations to these accounts. This extends beyond Control Tower's baseline by link:https://docs.aws.amazon.com/controltower/latest/userguide/roles-how.html[deploying specialized IAM roles], comprehensive networking configurations, and enhanced security monitoring services. For instance, while Control Tower configures basic AWS Config rules, LZA Universal Configuration configures additional Control Tower controls while also provisioning it's own AWS Config rules.
 
 Organizations benefit tremendously from this integration through simplified operational management. Control Tower's dashboard continues to serve as the central governance interface, while LZA's automation handles complex customizations behind the scenes. This consolidation creates a single source of truth for account management while still providing the flexibility to adapt to specific organizational needs. The enhanced governance model combines Control Tower's mandatory guardrails with LZA's additional preventative and detective controls, creating comprehensive protection across the entire AWS organization.
 
@@ -112,7 +112,7 @@ The LZA Universal Configuration implements a centralized security management arc
 At the heart of this architecture is the designation of the Audit account as the centralized security administrator.
 
 .Delegated Security Administration Architecture
-[mermaid]
+[source,mermaid]
 ....
 flowchart TD
     classDef management fill:#FFD0D0,stroke:#333,stroke-width:1px;
@@ -123,20 +123,20 @@ flowchart TD
     mgmt[Management Account]:::management
     audit[Audit Account]:::delegated
     members[Member Accounts]:::member
-    
+
     gd[GuardDuty]:::service
     sh[Security Hub]:::service
     macie[Macie]:::service
     config[AWS Config]:::service
-    
+
     mgmt -->|"Delegates administration"| audit
     audit -->|"Manages security"| members
-    
+
     audit -->|"Administers"| gd
     audit -->|"Administers"| sh
     audit -->|"Administers"| macie
     audit -->|"Administers"| config
-    
+
     gd -->|"Monitors"| members
     sh -->|"Evaluates"| members
     macie -->|"Scans"| members
@@ -167,7 +167,7 @@ At the core of the LZA Universal Configuration's security strategy lies Amazon G
 Unlike traditional security tools that focus on narrow detection vectors, GuardDuty creates a comprehensive threat detection fabric that spans multiple layers of your cloud infrastructure—from network traffic to control plane operations to data access patterns:
 
 .GuardDuty's Multi-Dimensional Threat Detection
-[mermaid]
+[source,mermaid]
 ....
 flowchart TD
     classDef sources fill:#D0E8FF,stroke:#333,stroke-width:1px;
@@ -181,29 +181,29 @@ flowchart TD
     s3[S3 Data Events\nObject Access]:::sources
     k8s[Kubernetes Audit Logs\nContainer Activity]:::sources
     rds[RDS Login Activity\nDatabase Access]:::sources
-    
+
     gd[GuardDuty\nCorrelation Engine]:::processing
     ml[Machine Learning\nAnomaly Detection]:::processing
-    
+
     aws[AWS Threat Intelligence\nKnown Threats]:::intelligence
     third[Third-Party Intelligence\nEmerging Threats]:::intelligence
-    
+
     findings[Prioritized\nSecurity Findings]:::output
     hub[Security Hub\nIntegration]:::output
     events[EventBridge\nAutomation]:::output
-    
+
     vpc --> gd
     trail --> gd
     dns --> gd
     s3 --> gd
     k8s --> gd
     rds --> gd
-    
+
     aws --> gd
     third --> gd
-    
+
     gd <--> ml
-    
+
     gd --> findings
     findings --> hub
     findings --> events
@@ -224,7 +224,7 @@ While individual security services provide specialized protection capabilities, 
 Security Hub's value extends far beyond simple dashboard views—it implements a sophisticated security intelligence engine that transforms raw security data into actionable insights through multi-stage processing:
 
 .Security Hub's Intelligence Processing Pipeline
-[mermaid]
+[source,mermaid]
 ....
 flowchart TD
     classDef sources fill:#D0E8FF,stroke:#333,stroke-width:1px;
@@ -238,36 +238,36 @@ flowchart TD
     inspect[Inspector\nVulnerability Analysis]:::sources
     iam[IAM Access Analyzer\nExposure Analysis]:::sources
     third[Third-Party Security Tools\nExtended Intelligence]:::sources
-    
+
     sh[Security Finding\nPipeline]:::processing
     norm[Format\nNormalization]:::processing
     corr[Cross-Service\nCorrelation]:::processing
     score[Security Score\nCalculation]:::processing
-    
+
     fsbp[AWS Foundational\nSecurity Best Practices\n200+ Controls]:::standards
     nist[NIST 800-53\nRev 5\nFederal Standard]:::standards
     cis[CIS AWS\nBenchmark v3.0.0\nIndustry Standard]:::standards
-    
+
     dash[Executive\nDashboards]:::output
     insights[Security\nInsights]:::output
     eb[EventBridge\nIntegration]:::output
     auto[Security\nWorkflows]:::output
-    
+
     guard --> sh
     macie --> sh
     config --> sh
     inspect --> sh
     iam --> sh
     third --> sh
-    
+
     sh --> norm
     norm --> corr
     corr --> score
-    
+
     fsbp --> sh
     nist --> sh
     cis --> sh
-    
+
     sh --> dash
     sh --> insights
     sh --> eb
@@ -298,7 +298,7 @@ While GuardDuty focuses on detecting threats and Security Hub provides posture m
 Macie employs sophisticated discovery mechanisms that combine bucket analysis, object evaluation, and content inspection to build a comprehensive map of sensitive data across your organization:
 
 .Macie Sensitive Data Discovery Pipeline
-[mermaid]
+[source,mermaid]
 ....
 flowchart TD
     classDef discovery fill:#D0E8FF,stroke:#333,stroke-width:1px;
@@ -309,31 +309,31 @@ flowchart TD
     s3[S3 Buckets]:::discovery
     bucketd[Bucket Discovery\nPermission Analysis]:::discovery
     objd[Object Discovery\nMetadata Analysis]:::discovery
-    
+
     sampling[Intelligent Sampling\nRisk-Based Selection]:::analysis
     classify[Data Classification\nContent Evaluation]:::analysis
     patterns[Pattern Matching\nRegular Expressions]:::analysis
     ml[Machine Learning\nContextual Analysis]:::analysis
-    
+
     policy[Policy Findings\nBucket Configuration]:::results
     sensitive[Sensitive Data Findings\nObject Content]:::results
-    
+
     sh[Security Hub\nIntegration]:::integration
     s3notif[S3 Object Tags\nMetadata Enrichment]:::integration
     events[EventBridge Events\nAutomation Triggers]:::integration
-    
+
     s3 --> bucketd
     bucketd --> objd
     objd --> sampling
-    
+
     sampling --> classify
     classify --> patterns
     classify --> ml
-    
+
     bucketd --> policy
     patterns --> sensitive
     ml --> sensitive
-    
+
     policy --> sh
     sensitive --> s3notif
     sensitive --> events
@@ -354,7 +354,7 @@ This targeted visibility into sensitive data helps organizations address specifi
 [IMPORTANT]
 .Macie Alerting Configuration Required
 ====
-The LZA Universal Configuration separates policy findings and sensitive data findings as a best practice, but *does not automatically configure Macie alerting mechanisms*. 
+The LZA Universal Configuration separates policy findings and sensitive data findings as a best practice, but *does not automatically configure Macie alerting mechanisms*.
 
 Without this explicit configuration, sensitive data findings will remain visible only within the Macie console, potentially delaying critical response actions. Organizations should implement these notification pathways as part of their LZA deployment to ensure complete coverage of both policy violations and sensitive data discoveries.
 ====
@@ -366,7 +366,7 @@ Complementing the threat detection of GuardDuty, the compliance monitoring of Se
 Unlike traditional permission analysis tools that focus only on IAM policies, Access Analyzer employs sophisticated logical reasoning to evaluate the combined effect of resource policies across multiple AWS services:
 
 .Access Analyzer Comprehensive Policy Evaluation
-[mermaid]
+[source,mermaid]
 ....
 flowchart TD
     classDef resources fill:#D0E8FF,stroke:#333,stroke-width:1px;
@@ -382,20 +382,20 @@ flowchart TD
     sns[SNS Topic Policies]:::resources
     glacier[Glacier Vault Policies]:::resources
     secrets[Secrets Manager\nResource Policies]:::resources
-    
+
     analyzer[Access Analyzer\nLogical Reasoning Engine]:::analyzer
-    
+
     external[External Access Findings]:::findings
     unused[Unused Access Findings]:::findings
-    
+
     remediate[Policy Remediation]:::actions
     archive[Finding Archival]:::actions
-    
+
     s3p & iamr & kms & lambda & sqs & sns & glacier & secrets --> analyzer
-    
+
     analyzer --> external
     analyzer --> unused
-    
+
     external --> remediate
     external --> archive
     unused --> remediate
@@ -421,7 +421,7 @@ Additionally, Security Hub's integration with AWS EventBridge enables sophistica
 The LZA Universal Configuration implements a sophisticated governance framework that creates a consistent security posture across your entire AWS organization. Unlike traditional approaches that rely on account-by-account security implementation, this centralized framework establishes organization-wide guardrails that create predictable, enforceable security boundaries while maintaining the flexibility needed for diverse workloads.
 
 .Defense-in-Depth Organization Controls
-[mermaid]
+[source,mermaid]
 ....
 flowchart TD
     classDef preventative fill:#FFD0D0,stroke:#333,stroke-width:1px;
@@ -432,41 +432,41 @@ flowchart TD
     scps[Service Control\nPolicies]:::preventative
     tag[Tagging\nPolicies]:::management
     backup[Backup\nPolicies]:::management
-    
+
     config[AWS Config\nRules]:::detective
     findings[Security Hub\nFindings]:::detective
-    
+
     auto[Automated\nRemediation]:::remediation
-    
+
     root["Root OU"]
     infra["Infrastructure OU"]
     security["Security OU"]
     workloads["Workloads OU"]
-    
+
     scp1["Core\nGuardrails"]:::preventative
     scp2["Infrastructure\nGuardrails"]:::preventative
     scp3["Workload\nGuardrails"]:::preventative
     quar["Quarantine\nPolicy"]:::preventative
-    
+
     rule1["Identity &\nAccess Rules"]:::detective
     rule2["Network\nSecurity Rules"]:::detective
     rule3["Data Protection\nRules"]:::detective
-    
+
     ssm["SSM\nAutomation"]:::remediation
-    
+
     scps --> scp1 & scp2 & scp3 & quar
     config --> rule1 & rule2 & rule3
-    
+
     scp1 & scp2 & scp3 --> |"Prevents\nViolations"| root
     rule1 & rule2 & rule3 --> |"Detects\nViolations"| root
-    
+
     rule1 & rule2 & rule3 --> findings
     findings --> auto
     auto --> ssm
-    
+
     tag --> root
     backup --> root
-    
+
     root --> infra & security & workloads
 ....
 
@@ -479,7 +479,7 @@ The LZA Universal Configuration leverages Service Control Policies (SCPs)—a po
 The implementation creates a sophisticated hierarchy of SCPs that apply different security controls based on the specific needs and trust levels of various organizational units:
 
 .Strategic SCP Deployment Architecture
-[mermaid]
+[source,mermaid]
 ....
 graph TD
     classDef core fill:#D0E8FF,stroke:#333,stroke-width:1px;
@@ -497,14 +497,14 @@ graph TD
     dev["Dev OU"]
     test["Test OU"]
     prod["Prod OU"]
-    
+
     core1["Core Guardrails-1\nProtects CloudTrail,\nConfig, Lambda, etc."]:::core
     core2["Core Guardrails-2\nProtects security services\n& prevents root usage"]:::core
     secg["Security Guardrails\nProtects network resources\n& enforces encryption"]:::security
     infrag["Infrastructure Guardrails\nProtects network resources\n& enforces encryption"]:::infrastructure
     workg["Workload Guardrails\nRestricts network modifications\n& enforces encryption"]:::workloads
     quar["Quarantine Policy\nIsolates new accounts\nuntil properly configured"]:::quarantine
-    
+
     root --> infra
     root --> security
     root --> workloads
@@ -513,23 +513,23 @@ graph TD
     workloads --> dev
     workloads --> test
     workloads --> prod
-    
+
     infra --> |"Attached"| core1
     infra --> |"Account-level"| core2
     infra --> |"Account-level"| infrag
-    
+
     security --> |"Attached"| core1
     security --> |"Account-level"| core2
     security --> |"Account-level"| secg
-    
+
     workloads --> |"Attached"| core1
     workloads --> |"Account-level"| core2
-    
+
     sandbox --> |"Attached"| workg
     dev --> |"Attached"| workg
     test --> |"Attached"| workg
     prod --> |"Attached"| workg
-    
+
     subgraph "New Account"
         new((New Account)) --> |"Temporary"| quar
     end
@@ -681,7 +681,7 @@ While SCPs provide preventative guardrails that cannot be bypassed, the LZA Univ
 The LZA Universal Configuration deploys 30 AWS Config rules with an optional 5 across multiple security domains, creating a comprehensive compliance monitoring system that continuously evaluates your AWS environment against best practices and organizational requirements.
 
 .AWS Config Evaluation Process with Security Hub Integration
-[mermaid]
+[source,mermaid]
 ....
 flowchart LR
     classDef resources fill:#D0E8FF,stroke:#333,stroke-width:1px;
@@ -692,24 +692,24 @@ flowchart LR
 
     change[Resource\nConfiguration\nChange]:::resources
     periodic[Periodic\nEvaluation]:::resources
-    
+
     config[AWS Config\nEvaluation\nEngine]:::evaluation
     rules[AWS Config\nRules]:::evaluation
-    
+
     compliant[Compliant\nResources]:::findings
     noncompliant[Non-Compliant\nResources]:::findings
-    
+
     auto[Automated\nRemediation]:::remediation
     securityhub[AWS Security Hub\nFindings Dashboard]:::securityhub
-    
+
     change --> config
     periodic --> config
-    
+
     config <--> rules
-    
+
     config --> compliant
     config --> noncompliant
-    
+
     noncompliant --> auto
     noncompliant -->|Compliance findings\nforwarded to Security Hub| securityhub
     auto --> change
@@ -745,7 +745,7 @@ The LZA Universal Configuration establishes AWS IAM Identity Center as the corne
 By designating the SharedServices account as the delegated administrator for Identity Center, the configuration creates an intentional separation between organizational management and identity administration—a crucial security principle that prevents concentrated privilege in the Management account.
 
 .Identity Center Authentication Flow
-[mermaid]
+[source,mermaid]
 ....
 flowchart LR
     classDef corporate fill:#D0E8FF,stroke:#333,stroke-width:1px;
@@ -755,10 +755,10 @@ flowchart LR
     idp["Corporate Identity Provider\n(Active Directory, Okta, etc.)"]:::corporate
     idc["IAM Identity Center\n(SharedServices Account)"]:::aws
     portal["AWS Access Portal\nUnified Entry Point"]:::aws
-    
+
     dev["Development Account\nPermission Set: Developer"]:::accounts
     prod["Production Account\nPermission Set: ReadOnly"]:::accounts
-    
+
     idp -->|"Federation\nSAML 2.0/SCIM"| idc
     idc -->|"User Attributes\nGroup Membership"| portal
     portal -->|"Temporary Credentials\nSession-based Access"| dev
@@ -855,28 +855,28 @@ The boundary includes a critical enforcement mechanism that requires users to at
 ----
 
 .Permission Boundary Enforcement Model
-[mermaid]
+[source,mermaid]
 ....
 flowchart TD
     classDef user fill:#D0E8FF,stroke:#333,stroke-width:1px;
     classDef boundary fill:#FFD0D0,stroke:#333,stroke-width:1px;
     classDef resource fill:#D0FFD0,stroke:#333,stroke-width:1px;
     classDef effective fill:#FFFFD0,stroke:#333,stroke-width:1px;
-    
+
     dev["Developer\nIAM User/Role"]:::user
     pb["Permission Boundary\nMaximum Allowed Permissions"]:::boundary
     ip["Identity Policy\nGranted Permissions"]:::boundary
-    
+
     newrole["New Role\nCreated by Developer"]:::resource
     newpb["Permission Boundary\nMust Be Attached"]:::boundary
-    
+
     effective["Effective Permissions\nIdentity Policy ∩ Permission Boundary"]:::effective
-    
+
     dev -->|"Limited by"| pb
     dev -->|"Granted by"| ip
     dev -->|"Creates"| newrole
     newrole -->|"Limited by"| newpb
-    
+
     pb -->|"Intersection"| effective
     ip -->|"Intersection"| effective
 ....
@@ -902,7 +902,7 @@ The LZA Universal Configuration implements a comprehensive data protection frame
 
 * *Encryption Controls* provide essential protection for data at rest through multiple complementary services—AWS KMS handles centralized key management, while EBS Encryption secures volume data, S3 Encryption protects object storage, and Secrets Encryption safeguards sensitive credentials.
 
-* *Access Controls* prevent unauthorized exposure by implementing S3 Public Access Block to eliminate accidental public sharing, IAM Policies that enforce principle of least privilege, and VPC Endpoints that enable private connectivity to AWS services without traversing the public internet. 
+* *Access Controls* prevent unauthorized exposure by implementing S3 Public Access Block to eliminate accidental public sharing, IAM Policies that enforce principle of least privilege, and VPC Endpoints that enable private connectivity to AWS services without traversing the public internet.
 ** <<S3 Public Access Block>>
 ** <<IAM Policies>>
 
