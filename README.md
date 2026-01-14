@@ -45,7 +45,7 @@ Architecture guides, deployment procedures, and detailed design principles that 
 
 ### Cost
 
-You are responsible for the cost of the AWS services used while running this solution. As of this revision, the cost for running the Universal Configuration in its current form through the Landing Zone Accelerator on AWS with AWS Control Tower in the US East (N. Virginia) Region within a non-critical sandbox environment with no activity or workloads is approximately **$101.06 (USD)** each month.
+You are responsible for the cost of the AWS services used while running this solution. As of this revision, the cost for running the Universal Configuration in its current form through the Landing Zone Accelerator on AWS with AWS Control Tower in the US East (N. Virginia) Region within a non-critical sandbox environment with no activity or workloads is approximately **$1,372.11 (USD)** each month.
 
 We recommend creating a budget through AWS Cost Explorer to help manage costs. Prices are subject to change. For full details, refer to the pricing webpage for each AWS service used in this solution.
 
@@ -55,25 +55,25 @@ The following table provides a sample cost breakdown for deploying this solution
 
 | AWS Service | Monthly Cost [USD] |
 |-------------|-------------------|
-| Amazon Network Firewall | $585.40 |
-| AWS CloudTrail | $29.46 |
-| AWS Config | $55.95 |
-| AWS KMS | $367.10 |
-| Amazon Kinesis | $61.85 |
-| Amazon Data Firehose | $2.99 |
-| Amazon S3 | $4.86 |
+| AWS Network Firewall | $587.76 |
 | Amazon VPC | $458.53 |
-| Amazon CloudWatch | $22.21 |
-| AWS Security Hub | $221.92 |
-| Amazon GuardDuty | $10.84 |
-| Amazon Route 53 | $5.00 |
-| Amazon Macie | $7.16 |
-| AWS Secrets Manager | $0.44 |
-| AWS CodePipeline | $1.00 |
-| AWS CodeBuild | $1.52 |
-| **Total** | | **$1,842.08** |
+| AWS Key Management Service | $79.03 |
+| Amazon EC2-Other | $66.96 |
+| AWS Security Hub | $62.99 |
+| Amazon CloudWatch | $27.99 |
+| Amazon Kinesis | $24.29 |
+| AWS CloudTrail | $22.17 |
+| Amazon Data Firehose | $11.43 |
+| Amazon S3 | $10.55 |
+| Amazon Macie | $6.01 |
+| Amazon GuardDuty | $5.80 |
+| Amazon SQS | $3.10 |
+| AWS CodeBuild | $1.43 |
+| AWS Secrets Manager | $1.31 |
+| AWS CodePipeline | $1.20 |
+| **Total** | **$1,372.11** |
 
-> **Note:** The VPC calculation is done if you're utilizing a hub-and-spoke topology. Data transfer, AWS CodeArtifact, Amazon Detective, Amazon DynamoDB, AWS Lambda, AWS Service Catalog, Amazon Simple Notification Service (Amazon SNS), Amazon Simple Queue Service (Amazon SQS), AWS Step Functions, and AWS Systems Manager are priced at the Free Tier or less than $0.01 each month.
+> **Note:** The VPC calculation is done if you're utilizing a hub-and-spoke topology. Data transfer, Amazon DynamoDB, Amazon EC2-Instances, Amazon EventBridge, Amazon Location Service, Amazon SNS, AWS CloudFormation, AWS CodeArtifact, AWS Config, AWS Glue, AWS Lambda, AWS Service Catalog, AWS Step Functions, AWS Systems Manager, and Amazon Detective are priced at the Free Tier or less than $0.01 each month.
 
 
 
