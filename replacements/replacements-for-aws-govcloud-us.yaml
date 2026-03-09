@@ -214,3 +214,29 @@
             value:
               - "us-gov-west-1" # <----- UPDATE TO INCLUDE HOME REGION + ADDITIONAL REGIONS TO ENABLE
               # - "us-gov-east-1" # <----- ADD ADDITIONAL REGIONS AS NEEDED
+- filename: accounts-config.yaml
+  items:
+    - pattern: |
+        "  - name: Perimeter"
+        "    description: The Perimeter account"
+        "    email: <perimeter>@example.com  <----- UPDATE EMAIL ADDRESS"
+        "    organizationalUnit: Infrastructure"
+      replacement: |
+        "  - name: Perimeter"
+        "    description: The Perimeter account"
+        "    email: <perimeter>@example.com  <----- UPDATE EMAIL ADDRESS"
+        "    organizationalUnit: Infrastructure"
+        "# This section enables LZA to invite the accounts into the Organization"
+        "accountIds:"
+        "  - email: <landing-zone-management-email@example.com> # <----- UPDATE EMAIL ADDRESS"
+        '    accountId: "000000000000" # <----- UPDATE GOVCLOUD ACCOUNT ID from Commercial GovCloud mapping table'
+        "  - email: <govCloud-log-archive-email@example.com> # <----- UPDATE EMAIL ADDRESS"
+        '    accountId: "111111111111" # <----- UPDATE GOVCLOUD ACCOUNT ID from Commercial GovCloud mapping table'
+        "  - email: <govCloud-audit-email@example.com> # <----- UPDATE EMAIL ADDRESS"
+        '    accountId: "222222222222" # <----- UPDATE GOVCLOUD ACCOUNT ID from Commercial GovCloud mapping table'
+        "  - email: <govCloud-shared-services-email@example.com> # <----- UPDATE EMAIL ADDRESS"
+        '    accountId: "333333333333" # <----- UPDATE GOVCLOUD ACCOUNT ID from Commercial GovCloud mapping table'
+        "  - email: <govCloud-network-email@example.com> # <----- UPDATE EMAIL ADDRESS"
+        '    accountId: "444444444444" # <----- UPDATE GOVCLOUD ACCOUNT ID from Commercial GovCloud mapping table'
+        "  - email: <govCloud-perimeter-email@example.com> # <----- UPDATE EMAIL ADDRESS"
+        '    accountId: "555555555555" # <----- UPDATE GOVCLOUD ACCOUNT ID from Commercial GovCloud mapping table'
