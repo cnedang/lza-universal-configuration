@@ -673,7 +673,11 @@ centralSecurityServices:
             filter:
               - value: "aws-accelerator"
                 comparison: "CONTAINS"
-
+  # AWS Systems Manager Settings
+  ssmSettings:
+    blockPublicDocumentSharing:
+      enable: true
+      excludeAccounts: []
   ssmAutomation:
     documentSets:
       - shareTargets:
