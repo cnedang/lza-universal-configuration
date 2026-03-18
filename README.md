@@ -28,6 +28,22 @@ This comprehensive guide covers:
 - Industry-specific security controls and frameworks
 - Regulatory compliance mappings
 
+## AI-Assisted Management (Optional)
+
+The [LZA MCP Server](https://github.com/awslabs/lza-mcp-server) is an open-source 
+Model Context Protocol (MCP) server that provides AI-assisted management of LZA deployments, 
+including built-in support for Universal Configuration:
+
+- **Guided UC Merge**: Select a network model, customize settings, validate compatibility, 
+  and merge into your LZA deployment — all through natural language conversation
+- **Schema Discovery**: Search and explore LZA configuration schemas for your deployed version — helping the AI verify property names, types, and constraints when suggesting configuration changes
+- **Pipeline Orchestration**: Deploy, monitor, and diagnose pipeline executions from your IDE
+
+The MCP server ships with UC release artifacts embedded in the container image, so no 
+separate download is needed. See the 
+[Universal Configuration section](https://github.com/awslabs/lza-mcp-server#universal-configuration) 
+of the LZA MCP Server documentation for more information.
+
 ## What's Included
 
 The LZA Universal Configuration provides ready-to-deploy configuration files and implementation guidance for LZA Universal Configuration baseline:
