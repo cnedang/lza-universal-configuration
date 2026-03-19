@@ -224,17 +224,12 @@ You can disregard this finding, as these IAM policies are managed by LZA to enab
 |https://docs.aws.amazon.com/securityhub/latest/userguide/kms-controls.html#kms-2[KMS.2]
 |IAM principals should not have IAM inline policies that allow decryption actions on all KMS keys
 |Medium
-a|*_Automatically Suppressed_* - When using the Landing Zone Accelerator on AWS solution, this finding includes the following AWS IAM principals with prefixes `{ACCELERATOR_PREFIX}` and `{cdk-accel}`:
+a|*_Automatically Suppressed_* - When using the Landing Zone Accelerator on AWS solution, this finding includes the following AWS IAM principals with prefix `{ACCELERATOR_PREFIX}`:
 
 * `{ACCELERATOR_PREFIX}-InstallerS-UpdatePipelineLambdaRoleXXXX` (UpdatePipelineLambdaPolicy284ABC36)
-* `{cdk-accel}-file-publishing-role-{ACCOUNT_ID}-{REGION}`
-* `{cdk-accel}-deploy-role-{ACCOUNT_ID}-{REGION}`
+* `{ACCELERATOR_PREFIX}-SecurityAu-CustomMacieCreateMemberCuXXXX`
 
-You can disregard this finding related to AWS IAM principals with the prefix `{ACCELERATOR_PREFIX}`, as these roles with inline policies are managed by LZA to enable decryption operations on KMS keys. These policies are used by Lambda functions created by the solution and perform decryption actions only within the specific account and region adhering to the principle of least privilege.
-
-For the roles related to the AWS Cloud Development Kit (CDK), enabling the `useManagementAccessRole` option in the `global-config.yaml` file modifies CDK operations to use the IAM role specified in the `managementAccountAccessRole` option rather than the default roles created by CDK. The default CDK roles will still be created but will be only used for initial CDK resources setup. This finding guidance is mentioned in the CDK https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html#bootstrapping-securityhub[documentation]. Therefore, you can disregard those roles.
-
-Alternatively, you can choose to suppress the finding for these resources.
+You can disregard this finding, as these roles with inline policies are managed by LZA to enable decryption operations on KMS keys. These policies are used by Lambda functions created by the solution and perform decryption actions only within the specific account and region adhering to the principle of least privilege. Alternatively, you can choose to suppress the finding for these resources.
 
 |https://docs.aws.amazon.com/securityhub/latest/userguide/networkfirewall-controls.html#networkfirewall-9[NetworkFirewall.9]
 |Network Firewall firewalls should have deletion protection enabled

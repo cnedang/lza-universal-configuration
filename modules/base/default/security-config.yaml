@@ -380,11 +380,6 @@ centralSecurityServices:
             filter:
               - value: "KMS.1"
                 comparison: "EQUALS"
-          - key: "ResourceTags"
-            filter:
-              - key: "Accelerator"
-                value: "{{ AcceleratorPrefix }}"
-                comparison: "EQUALS"
           - key: "ResourceId"
             filter:
               - value: "{{ AcceleratorPrefix }}-SessionManagerLogging"
@@ -414,6 +409,8 @@ centralSecurityServices:
           - key: "ResourceId"
             filter:
               - value: "{{ AcceleratorPrefix }}-InstallerS-UpdatePipelineLambda"
+                comparison: "CONTAINS"
+              - value: "{{ AcceleratorPrefix }}-SecurityAu-CustomMacieCreateMemberCu"
                 comparison: "CONTAINS"
       # AWS Lambda
       - name: "{{ AcceleratorPrefix }}-Lambda-VPC-Suppress"
