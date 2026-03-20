@@ -30,18 +30,18 @@ This comprehensive guide covers:
 
 ## AI-Assisted Management (Optional)
 
-The [LZA MCP Server](https://github.com/awslabs/lza-mcp-server) is an open-source 
-Model Context Protocol (MCP) server that provides AI-assisted management of LZA deployments, 
+The [LZA MCP Server](https://github.com/awslabs/lza-mcp-server) is an open-source
+Model Context Protocol (MCP) server that provides AI-assisted management of LZA deployments,
 including built-in support for Universal Configuration:
 
-- **Guided UC Merge**: Select a network model, customize settings, validate compatibility, 
+- **Guided UC Merge**: Select a network model, customize settings, validate compatibility,
   and merge into your LZA deployment — all through natural language conversation
 - **Schema Discovery**: Search and explore LZA configuration schemas for your deployed version — helping the AI verify property names, types, and constraints when suggesting configuration changes
 - **Pipeline Orchestration**: Deploy, monitor, and diagnose pipeline executions from your IDE
 
-The MCP server ships with UC release artifacts embedded in the container image, so no 
-separate download is needed. See the 
-[Universal Configuration section](https://github.com/awslabs/lza-mcp-server#universal-configuration) 
+The MCP server ships with UC release artifacts embedded in the container image, so no
+separate download is needed. See the
+[Universal Configuration section](https://github.com/awslabs/lza-mcp-server#universal-configuration)
 of the LZA MCP Server documentation for more information.
 
 ## What's Included
@@ -61,7 +61,7 @@ Architecture guides, deployment procedures, and detailed design principles that 
 
 ### Cost
 
-You are responsible for the cost of the AWS services used while running this solution. As of this revision, the cost for running the Universal Configuration in its current form through the Landing Zone Accelerator on AWS with AWS Control Tower in the US East (N. Virginia) Region within a non-critical sandbox environment with no activity or workloads is approximately **$1,372.11 (USD)** each month.
+You are responsible for the cost of the AWS services used while running this solution. As of this revision, the cost for running the Universal Configuration with the Hub and Spoke networking model in its current form through the Landing Zone Accelerator on AWS with AWS Control Tower in the US East (N. Virginia) Region within a non-critical sandbox environment with no activity or workloads is approximately **$1,372.11 (USD)** each month. Costs for the Shared VPC model will be slightly lower. If you choose to deploy only the base configuration (Security, Governance, and Organization settings) without either networking model, the monthly cost will be significantly reduced.
 
 We recommend creating a budget through AWS Cost Explorer to help manage costs. Prices are subject to change. For full details, refer to the pricing webpage for each AWS service used in this solution.
 
