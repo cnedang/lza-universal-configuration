@@ -28,6 +28,10 @@ This comprehensive guide covers:
 - Industry-specific security controls and frameworks
 - Regulatory compliance mappings
 
+## Container Deployment
+
+LZA now supports container-based deployment, enabling deployment in AWS regions without CodeBuild and CodePipeline support while providing improved performance through an optimized deployment process. For more information, refer to the [LZA Container Deployment documentation](https://github.com/awslabs/landing-zone-accelerator-on-aws/blob/release/v1.15.0/container/README.md).
+
 ## AI-Assisted Management (Optional)
 
 The [LZA MCP Server](https://github.com/awslabs/lza-mcp-server) is an open-source

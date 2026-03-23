@@ -6,6 +6,33 @@ All notable changes to this project will be documented in this file.
 
 We highly recommend that you keep your environments up to date by upgrading to the latest version.
 
+When applying updates, review the changes in this release alongside your current configuration to decide which features from this version to adopt.
+
+## [1.2.0] - 2026-03-20
+
+### New Features
+
+- **Security Hub Automation**: Added automation rules for Security Hub finding suppression with documentation for all suppressed controls
+- **SSM Security**: Enabled block public sharing for SSM documents
+- **LZA MCP Server**: Added LZA MCP Server description to README for AI-assisted deployment management
+
+### Bug Fixes
+
+- **GovCloud Configuration**: Added missing account IDs for GovCloud configurations
+- **Cost**: Updated pricing documentation with networking model cost details
+- **Documentation**: Fixed Mermaid diagrams not rendering on GitHub
+- **Documentation**: Fixed SCP config file references in Managing SCPs guide
+
+### Note
+
+- **Container Deployment**: LZA now supports container-based deployment, enabling deployment in AWS regions without CodeBuild and CodePipeline support. For more information, refer to the [LZA README](https://github.com/awslabs/landing-zone-accelerator-on-aws/blob/release/v1.15.0/container/README.md).
+
+### Contributors
+
+We want to extend a special thank you to the following external users who have contributed to this release:
+
+- @tvancast
+
 ## [1.1.0] - 2025-12-11
 
 ### CRITICAL
