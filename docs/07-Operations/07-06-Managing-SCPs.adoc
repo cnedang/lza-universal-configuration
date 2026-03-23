@@ -34,7 +34,7 @@ LZA joins policy definition with policy targets in a universal configuration str
 
 === SCP Organization in LZA
 
-LZA defines SCPs in separate JSON files that you reference in the `policySets` section of the `iam-config.yaml` file. This modular approach provides several advantages:
+LZA defines SCPs in separate JSON files that you reference in the `serviceControlPolicies` section of the `organization-config.yaml` file. This modular approach provides several advantages:
 
 * *Logical Grouping*: Organize your SCPs into separate policy files grouped by purpose and common goal
 * *Maintainability*: One SCP per file makes maintenance and version control more manageable
@@ -68,7 +68,7 @@ Within your repository structure, consider maintaining SCPs in a dedicated direc
 
 === Implementing SCPs in LZA: Step-by-Step Guide
 
-1. *Assess Requirements*: 
+1. *Assess Requirements*:
    * Determine if an existing SCP already addresses your requirements or if a new SCP is needed
    * Document the business and security justification for the policy
    * Identify potential impacts on workloads and operations
@@ -104,8 +104,8 @@ Within your repository structure, consider maintaining SCPs in a dedicated direc
 }
 ----
 
-4. *Configure in IAM Config*:
-   * Add a reference to your new SCP in the `policySets` section of the `iam-config.yaml` file
+4. *Configure in Organization Config*:
+   * Add a reference to your new SCP in the `serviceControlPolicies` section of the `organization-config.yaml` file
    * Set `deploymentTargets` initially to test accounts using the `accounts` option
    * Optionally limit regional deployment with `excludedRegions` parameter
    * Example configuration:
@@ -284,14 +284,14 @@ Example of region restriction policy:
 [json]
 ----
 {
-  "Version": "2012-10-17", 
+  "Version": "2012-10-17",
   "Statement": [
     {
       "Sid": "DenyAllOutsideApprovedRegions",
       "Effect": "Deny",
       "NotAction": [
         "a4b:*",
-        "acm:*", 
+        "acm:*",
         "aws-portal:*",
         "budgets:*",
         "ce:*",
@@ -331,7 +331,7 @@ Example of region restriction policy:
         "StringNotEquals": {
           "aws:RequestedRegion": [
             "us-east-1",
-            "us-east-2", 
+            "us-east-2",
             "us-west-2"
           ]
         }
@@ -511,7 +511,7 @@ Example documentation header format for SCP JSON files:
 
 When using LZA with AWS Control Tower, consider these additional factors:
 
-1. *Control Tower Guardrails*: 
+1. *Control Tower Guardrails*:
    * Control Tower implements its own guardrails as SCPs
    * Review these existing guardrails before creating custom SCPs to avoid duplication
    * Ensure your custom SCPs don't conflict with mandatory Control Tower guardrails
