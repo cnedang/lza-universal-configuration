@@ -9,10 +9,10 @@ organizationalUnits:
   - name: Security
   - name: test-ou
   - name: Infrastructure
-  - name: Suspended
+  - name: dev
     ignore: true
-  - name: Workloads
-  - name: Workloads/Sandbox
+  - name: test-ou/test1-ou
+  - name: lza-stuffs
   - name: Workloads/Dev
   - name: Workloads/Test
   - name: Workloads/Prod
