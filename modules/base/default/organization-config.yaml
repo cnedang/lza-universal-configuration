@@ -7,12 +7,12 @@
 enable: true
 organizationalUnits:
   - name: Security
-  # - name: test-ou
+  - name: test-ou
   - name: Infrastructure
 ignore: true
-  - name: Workloads/Dev
-  - name: Workloads/Test
-  - name: Workloads/Prod
+  # - name: Workloads/Dev
+  # - name: Workloads/Test
+  # - name: Workloads/Prod
 quarantineNewAccounts:
   enable: true
   scpPolicyName: "{{ AcceleratorPrefix }}-Quarantine-New-Object"
@@ -26,13 +26,13 @@ declarativePolicies:
     deploymentTargets:
       organizationalUnits:
         - Security
-        - Workloads/Dev
-        - Workloads/Test
-        - Workloads/Prod
+        # - Workloads/Dev
+        # - Workloads/Test
+        # - Workloads/Prod
         # - test-ou
       accounts:
-        - Network
-        - SharedServices
+        # - Network
+        # - SharedServices
 resourceControlPolicies:
   - name: "{{ AcceleratorPrefix }}-Core-Rcp-Guardrails"
     description: >
@@ -63,7 +63,7 @@ serviceControlPolicies:
       organizationalUnits:
         - Infrastructure
         - Security
-        - Workloads
+        # - Workloads
   - name: "{{ AcceleratorPrefix }}-Security-Guardrails-1"
     description: >
       Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
@@ -82,9 +82,9 @@ serviceControlPolicies:
     type: customerManaged
     deploymentTargets:
       accounts:
-        - Network
-        - Perimeter
-        - SharedServices
+        # - Network
+        # - Perimeter
+        # - SharedServices
   - name: "{{ AcceleratorPrefix }}-Core-Workloads-Guardrails-1"
     description: >
       Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
@@ -92,9 +92,9 @@ serviceControlPolicies:
     type: customerManaged
     deploymentTargets:
       organizationalUnits:
-        - Workloads/Dev
-        - Workloads/Test
-        - Workloads/Prod
+        # - Workloads/Dev
+        # - Workloads/Test
+        # - Workloads/Prod
   - name: "{{ AcceleratorPrefix }}-Core-Sandbox-Guardrails-1"
     description: >
       Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
@@ -110,7 +110,7 @@ serviceControlPolicies:
     type: customerManaged
     deploymentTargets:
       organizationalUnits:
-        - Suspended
+        # - Suspended
   - name: "{{ AcceleratorPrefix }}-Quarantine-New-Object"
     description: >
       This SCP is used to prevent changes to new accounts until the Accelerator has been executed successfully.
@@ -132,7 +132,7 @@ taggingPolicies:
     deploymentTargets:
       organizationalUnits:
         - Infrastructure
-        - Workloads
+        # - Workloads
   # AWS Backup continuous backup is only supported for S3 & RDS but RDS isn't supported by tag policies.
   #   - https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery.html
   - name: S3TagPolicy
@@ -141,7 +141,7 @@ taggingPolicies:
     deploymentTargets:
       organizationalUnits:
         - Infrastructure
-        - Workloads
+        # - Workloads
 
 chatbotPolicies: []
 
@@ -169,4 +169,4 @@ backupPolicies:
     deploymentTargets:
       organizationalUnits:
         - Infrastructure
-        - Workloads
+        # - Workloads
