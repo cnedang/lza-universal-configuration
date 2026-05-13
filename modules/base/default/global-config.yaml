@@ -53,12 +53,12 @@ controlTower:
       deploymentTargets:
         organizationalUnits:
           - Security
-          - Infrastructure
-          - Workloads
-          - Workloads/Sandbox
-          - Workloads/Dev
-          - Workloads/Test
-          - Workloads/Prod
+          # - Infrastructure
+          # - Workloads
+          # - Workloads/Sandbox
+          # - Workloads/Dev
+          # - Workloads/Test
+          # - Workloads/Prod
     # # CONFIG.LOGS.DT.1
     # #   - Checks if Amazon CloudWatch Log Groups are encrypted with any AWS KMS key or a specified AWS KMS key Id
     - identifier: 497wrm2xnk1wxlf4obrdo7mej
@@ -66,12 +66,12 @@ controlTower:
       deploymentTargets:
         organizationalUnits:
           - Security
-          - Infrastructure
-          - Workloads
-          - Workloads/Sandbox
-          - Workloads/Dev
-          - Workloads/Test
-          - Workloads/Prod
+          # - Infrastructure
+          # - Workloads
+          # - Workloads/Sandbox
+          # - Workloads/Dev
+          # - Workloads/Test
+          # - Workloads/Prod
     # # CONFIG.IAM.DT.6
     # #   - Checks whether IAM groups have at least one IAM user
     - identifier: 3jw8po9x95lr2nob65iaqhqir
@@ -79,12 +79,13 @@ controlTower:
       deploymentTargets:
         organizationalUnits:
           - Security
-          - Infrastructure
-          - Workloads
-          - Workloads/Sandbox
-          - Workloads/Dev
-          - Workloads/Test
-          - Workloads/Prod
+          # - Infrastructure
+          # - Workloads
+          # - Workloads/Sandbox
+          # - Workloads/Dev
+          # - Workloads/Test
+          # - Workloads/Prod
+     
     # # CONFIG.IAM.DT.5
     # #   - Checks if the inline policy feature is not in use
     - identifier: bi738zni6ovf9d6dagobqtk6g
@@ -157,11 +158,11 @@ controlTower:
       deploymentTargets:
         organizationalUnits:
           - Security
-          - Infrastructure
-          - Workloads
-          - Workloads/Sandbox
-          - Workloads/Dev
-          - Workloads/Test
+          # - Infrastructure
+          # - Workloads
+          # - Workloads/Sandbox
+          # - Workloads/Dev
+          # - Workloads/Test
           - Workloads/Prod
     # # BACKUP_RECOVERY_POINT_MANUAL_DELETION_DISABLED
     # #   - Checks if a backup vault has an attached resource-based policy which prevents deletion of recovery points
@@ -170,12 +171,12 @@ controlTower:
       deploymentTargets:
         organizationalUnits:
           - Security
-          - Infrastructure
-          - Workloads
-          - Workloads/Sandbox
-          - Workloads/Dev
-          - Workloads/Test
-          - Workloads/Prod
+          # - Infrastructure
+          # - Workloads
+          # - Workloads/Sandbox
+          # - Workloads/Dev
+          # - Workloads/Test
+          # - Workloads/Prod
     # # CONFIG.EC2.DT.10
     # #   - Checks if Amazon Elastic Compute Cloud (Amazon EC2) instances are protected by a backup plan
     - identifier: aqh482zxh1libhd8e5pff5r1w
@@ -183,12 +184,12 @@ controlTower:
       deploymentTargets:
         organizationalUnits:
           - Security
-          - Infrastructure
-          - Workloads
-          - Workloads/Sandbox
-          - Workloads/Dev
-          - Workloads/Test
-          - Workloads/Prod
+          # - Infrastructure
+          # - Workloads
+          # - Workloads/Sandbox
+          # - Workloads/Dev
+          # - Workloads/Test
+          # - Workloads/Prod
 
 # AWS IAM Central Root Management
 centralRootUserManagement:
@@ -219,10 +220,11 @@ backup:
     - name: "{{ AcceleratorPrefix }}-BackupVault"
       deploymentTargets:
         organizationalUnits:
-          - Infrastructure
-          - Workloads/Dev
-          - Workloads/Test
-          - Workloads/Prod
+          # - Infrastructure
+          # - Workloads/Dev
+          # - Workloads/Test
+          # - Workloads/Prod
+          - test-ou
 
 # Logging Configurations
 logging:
