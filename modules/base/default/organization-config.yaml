@@ -19,132 +19,145 @@ ignore: true
 quarantineNewAccounts:
   enable: true
   scpPolicyName: "{{ AcceleratorPrefix }}-Quarantine-New-Object"
-# declarativePolicies:
-#   - name: "{{ AcceleratorPrefix }}-Vpc-Block-Public-Access-Guardrail"
-#     description: >
-#       Declarative policies for VPC Block Public Access.
-#       Attached at account level for granular control as some accounts within OUs require exemptions.
-#     policy: declarative-policies/lza-core-vpc-block-public-access.json
-#     type: customerManaged
-#     deploymentTargets:
-#       organizationalUnits:
-#         - Security
-#         # - Workloads/Dev
-#         # - Workloads/Test
-#         # - Workloads/Prod
-#         # - test-ou
-#       accounts:
-#         # - Network
-#         # - SharedServices
-# resourceControlPolicies:
-#   - name: "{{ AcceleratorPrefix }}-Core-Rcp-Guardrails"
-#     description: >
-#       A comprehensive data perimeter policy that allows external read-only access while protecting AWS resources from unauthorized modifications and enforcing secure communications.
-#     policy: rcp-policies/lza-core-rcp-guardrails-1.json
-#     deploymentTargets:
-#       organizationalUnits:
-#         - Infrastructure
-#         - Security
-#         # - test-ou
-# serviceControlPolicies:
-#   - name: "{{ AcceleratorPrefix }}-Core-Guardrails-1"
-#     description: >
-#       Restricts unauthorized modifications to CloudTrail, Config, and LZA managed resources.
-#     policy: service-control-policies/lza-core-guardrails-1.json
-#     type: customerManaged
-#     deploymentTargets:
-#       organizationalUnits:
-#         - Infrastructure
-#         - Security
-#         # - test-ou
-#   - name: "{{ AcceleratorPrefix }}-Core-Guardrails-2"
-#     description: >
-#       Restricts unauthorized modifications to security services (GuardDuty, SecurityHub, Macie), LZA managed resources and prevents the use of the root account.
-#     policy: service-control-policies/lza-core-guardrails-2.json
-#     type: customerManaged
-#     deploymentTargets:
-#       organizationalUnits:
-#         - Infrastructure
-#         - Security
-#         # - Workloads
-#   - name: "{{ AcceleratorPrefix }}-Security-Guardrails-1"
-#     description: >
-#       Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
-#       Attached at account level to reserve SCP quota for AWS Control Tower region deny controls
-#     policy: service-control-policies/lza-core-security-guardrails-1.json
-#     type: customerManaged
-#     deploymentTargets:
-#       accounts:
-#         - Audit
-#         - LogArchive
-#   - name: "{{ AcceleratorPrefix }}-Infrastructure-Guardrails-1"
-#     description: >
-#       Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
-#       Attached at account level to reserve SCP quota for AWS Control Tower region deny controls
-#     policy: service-control-policies/lza-infrastructure-guardrails-1.json
-#     type: customerManaged
-#     deploymentTargets:
-#       accounts:
-#         # - Network
-#         # - Perimeter
-#         # - SharedServices
-#   - name: "{{ AcceleratorPrefix }}-Core-Workloads-Guardrails-1"
-#     description: >
-#       Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
-#     policy: service-control-policies/lza-core-workloads-guardrails-1.json
-#     type: customerManaged
-#     deploymentTargets:
-#       organizationalUnits:
-#         # - Workloads/Dev
-#         # - Workloads/Test
-#         # - Workloads/Prod
-#   - name: "{{ AcceleratorPrefix }}-Core-Sandbox-Guardrails-1"
-#     description: >
-#       Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
-#     policy: service-control-policies/lza-core-sandbox-guardrails-1.json
-#     type: customerManaged
-#     deploymentTargets:
-#       organizationalUnits:
-#         - Workloads/Sandbox
-#   - name: "{{ AcceleratorPrefix }}-Suspended-Guardrails"
-#     description: >
-#       Restricts LZA from accessing resources.
-#     policy: service-control-policies/lza-suspended-guardrails.json
-#     type: customerManaged
-#     deploymentTargets:
-#       organizationalUnits:
-#         # - Suspended
-#   - name: "{{ AcceleratorPrefix }}-Quarantine-New-Object"
-#     description: >
-#       This SCP is used to prevent changes to new accounts until the Accelerator has been executed successfully.
-#       This policy will be applied upon account creation if enabled.
-#     policy: service-control-policies/lza-quarantine.json
-#     type: customerManaged
-#     deploymentTargets:
-#       organizationalUnits: []
+declarativePolicies:
+  - name: "{{ AcceleratorPrefix }}-Vpc-Block-Public-Access-Guardrail"
+    description: >
+      Declarative policies for VPC Block Public Access.
+      Attached at account level for granular control as some accounts within OUs require exemptions.
+    policy: declarative-policies/lza-core-vpc-block-public-access.json
+    type: customerManaged
+    deploymentTargets:
+      organizationalUnits:
+        - name: Security
+        - name: test-ou
+        - name: Infrastructure
+        - name: dev
+        - name: test-ou/test1-ou
+        - name: lza-stuffs
+      accounts:
+        # - Network
+        # - SharedServices
+resourceControlPolicies:
+  - name: "{{ AcceleratorPrefix }}-Core-Rcp-Guardrails"
+    description: >
+      A comprehensive data perimeter policy that allows external read-only access while protecting AWS resources from unauthorized modifications and enforcing secure communications.
+    policy: rcp-policies/lza-core-rcp-guardrails-1.json
+    deploymentTargets:
+      organizationalUnits:
+        - name: Security
+        - name: test-ou
+        - name: Infrastructure
+        - name: dev
+        - name: test-ou/test1-ou
+        - name: lza-stuffs
+serviceControlPolicies:
+  - name: "{{ AcceleratorPrefix }}-Core-Guardrails-1"
+    description: >
+      Restricts unauthorized modifications to CloudTrail, Config, and LZA managed resources.
+    policy: service-control-policies/lza-core-guardrails-1.json
+    type: customerManaged
+    deploymentTargets:
+      organizationalUnits:
+        - name: Security
+        - name: test-ou
+        - name: Infrastructure
+        - name: dev
+        - name: test-ou/test1-ou
+        - name: lza-stuffs
+  - name: "{{ AcceleratorPrefix }}-Core-Guardrails-2"
+    description: >
+      Restricts unauthorized modifications to security services (GuardDuty, SecurityHub, Macie), LZA managed resources and prevents the use of the root account.
+    policy: service-control-policies/lza-core-guardrails-2.json
+    type: customerManaged
+    deploymentTargets:
+      organizationalUnits:
+        - name: Security
+        - name: test-ou
+        - name: Infrastructure
+        - name: dev
+        - name: test-ou/test1-ou
+        - name: lza-stuffs
+  - name: "{{ AcceleratorPrefix }}-Security-Guardrails-1"
+    description: >
+      Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
+      Attached at account level to reserve SCP quota for AWS Control Tower region deny controls
+    policy: service-control-policies/lza-core-security-guardrails-1.json
+    type: customerManaged
+    deploymentTargets:
+      accounts:
+        - Audit
+        - LogArchive
+  - name: "{{ AcceleratorPrefix }}-Infrastructure-Guardrails-1"
+    description: >
+      Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
+      Attached at account level to reserve SCP quota for AWS Control Tower region deny controls
+    policy: service-control-policies/lza-infrastructure-guardrails-1.json
+    type: customerManaged
+    deploymentTargets:
+      accounts:
+        # - Network
+        # - Perimeter
+        # - SharedServices
+  - name: "{{ AcceleratorPrefix }}-Core-Workloads-Guardrails-1"
+    description: >
+      Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
+    policy: service-control-policies/lza-core-workloads-guardrails-1.json
+    type: customerManaged
+    deploymentTargets:
+      organizationalUnits:
+        - name: Security
+        - name: test-ou
+        - name: Infrastructure
+        - name: dev
+        - name: test-ou/test1-ou
+        - name: lza-stuffs
+  - name: "{{ AcceleratorPrefix }}-Core-Sandbox-Guardrails-1"
+    description: >
+      Restricts unauthorized modifications to networking resources and configurations, and enforces encryption requirements for storage services.
+    policy: service-control-policies/lza-core-sandbox-guardrails-1.json
+    type: customerManaged
+    deploymentTargets:
+      organizationalUnits:
+        - dev
+  - name: "{{ AcceleratorPrefix }}-Suspended-Guardrails"
+    description: >
+      Restricts LZA from accessing resources.
+    policy: service-control-policies/lza-suspended-guardrails.json
+    type: customerManaged
+    deploymentTargets:
+      organizationalUnits:
+        - Suspended
+  - name: "{{ AcceleratorPrefix }}-Quarantine-New-Object"
+    description: >
+      This SCP is used to prevent changes to new accounts until the Accelerator has been executed successfully.
+      This policy will be applied upon account creation if enabled.
+    policy: service-control-policies/lza-quarantine.json
+    type: customerManaged
+    deploymentTargets:
+      organizationalUnits: []
 
-# taggingPolicies:
-#   # AWS Organizations Tagging Policies
-#   # - Enables tag policy for values of backup plans only
-#   # - This will only enforce the tag value specified matches one of the backup plans
-#   #   - Redshift, RDS, Timestream, DocumentDB, Neptune cannot currently be enforced
-#   #   - VMWare VMs are outside of scope for tag enforcement
-#   - name: OrgTagPolicy
-#     description: Organization Tagging Policy
-#     policy: tagging-policies/org-tag-policy.json
-#     deploymentTargets:
-#       organizationalUnits:
-#         - Infrastructure
-#         # - Workloads
-#   # AWS Backup continuous backup is only supported for S3 & RDS but RDS isn't supported by tag policies.
-#   #   - https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery.html
-#   - name: S3TagPolicy
-#     description: S3 Tagging Policy
-#     policy: tagging-policies/s3-tag-policy.json
-#     deploymentTargets:
-#       organizationalUnits:
-#         - Infrastructure
-#         # - Workloads
+taggingPolicies:
+  # AWS Organizations Tagging Policies
+  # - Enables tag policy for values of backup plans only
+  # - This will only enforce the tag value specified matches one of the backup plans
+  #   - Redshift, RDS, Timestream, DocumentDB, Neptune cannot currently be enforced
+  #   - VMWare VMs are outside of scope for tag enforcement
+  - name: OrgTagPolicy
+    description: Organization Tagging Policy
+    policy: tagging-policies/org-tag-policy.json
+    deploymentTargets:
+      organizationalUnits:
+        - Infrastructure
+        # - Workloads
+  # AWS Backup continuous backup is only supported for S3 & RDS but RDS isn't supported by tag policies.
+  #   - https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery.html
+  - name: S3TagPolicy
+    description: S3 Tagging Policy
+    policy: tagging-policies/s3-tag-policy.json
+    deploymentTargets:
+      organizationalUnits:
+        - Infrastructure
+        # - Workloads
 
 # chatbotPolicies: []
 
