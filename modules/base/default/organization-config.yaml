@@ -7,12 +7,9 @@
 enable: true
 organizationalUnits:
   - name: Security
-  - name: test-ou
+  # - name: test-ou
   - name: Infrastructure
-  - name: test-ou/test1-ou
-  - name: lza-stuffs
-  - name: dev
-    ignore: true
+ignore: true
   - name: Workloads/Dev
   - name: Workloads/Test
   - name: Workloads/Prod
