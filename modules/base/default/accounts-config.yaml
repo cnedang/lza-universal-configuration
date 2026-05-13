@@ -29,18 +29,18 @@ mandatoryAccounts:
       key does not need to match the AWS account name.
     email: cnedang+second8@amazon.com
     organizationalUnit: Security
-  # - name: chris-test
-  #   description: The testServices account
-  #   email: cnedang+second5@amazon.com
-  #   organizationalUnit: test-ou
-  # - name: SandBox
-  #   description: The Services account
-  #   email: cnedang+second3@amazon.com
-  #   organizationalUnit: dev
-  # - name: Core
-  #   description: The coreServices account
-  #   email: cnedang+second4@amazon.com
-  #   organizationalUnit: dev
+  - name: chris-test
+    description: The testServices account
+    email: cnedang+second5@amazon.com
+    organizationalUnit: test-ou
+  - name: SandBox
+    description: The Services account
+    email: cnedang+second3@amazon.com
+    organizationalUnit: dev
+  - name: Core
+    description: The coreServices account
+    email: cnedang+second4@amazon.com
+    organizationalUnit: dev
 # workloadAccounts:
 #   # The "name" will be used to set the AWS Account name
 #   # The "name" value does not currently support spaces
