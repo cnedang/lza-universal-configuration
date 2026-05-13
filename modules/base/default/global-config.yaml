@@ -94,11 +94,11 @@ controlTower:
         organizationalUnits:
           - Security
           - Infrastructure
-          - Workloads
-          - Workloads/Sandbox
-          - Workloads/Dev
-          - Workloads/Test
-          - Workloads/Prod
+          # - Workloads
+          # - Workloads/Sandbox
+          # - Workloads/Dev
+          # - Workloads/Test
+          # - Workloads/Prod
     # # CONFIG.EC2.DT.17
     # #.  - Checks if internet gateways are attached to an authorized virtual private cloud (Amazon VPC)
     - identifier: 1d908j9c0qtyr5vq7mora1ht2
@@ -107,11 +107,11 @@ controlTower:
         organizationalUnits:
           - Security
           - Infrastructure
-          - Workloads
-          - Workloads/Sandbox
-          - Workloads/Dev
-          - Workloads/Test
-          - Workloads/Prod
+          # - Workloads
+          # - Workloads/Sandbox
+          # - Workloads/Dev
+          # - Workloads/Test
+          # - Workloads/Prod
     # # AWS-GR_NO_UNRESTRICTED_ROUTE_TO_IGW
     # #   - Detect whether public routes exist in the route table for an Internet Gateway (IGW)
     - identifier: b8pjfqosgkgknznstduvel4rh
@@ -120,11 +120,11 @@ controlTower:
         organizationalUnits:
           - Security
           - Infrastructure
-          - Workloads
-          - Workloads/Sandbox
-          - Workloads/Dev
-          - Workloads/Test
-          - Workloads/Prod
+          # - Workloads
+          # - Workloads/Sandbox
+          # - Workloads/Dev
+          # - Workloads/Test
+          # - Workloads/Prod
     # # CONFIG.SAGEMAKER.DT.3
     # #   - Checks if an AWS Key Management Service (AWS KMS) key is configured for an Amazon SageMaker notebook instance
     - identifier: 3b7ib9mi87kcw90atgx2nboax
@@ -146,11 +146,11 @@ controlTower:
         organizationalUnits:
           - Security
           - Infrastructure
-          - Workloads
-          - Workloads/Sandbox
-          - Workloads/Dev
-          - Workloads/Test
-          - Workloads/Prod
+          # - Workloads
+          # - Workloads/Sandbox
+          # - Workloads/Dev
+          # - Workloads/Test
+          # - Workloads/Prod
     # # BACKUP_PLAN_MIN_FREQUENCY_AND_MIN_RETENTION_CHECK
     # #   - Checks if a backup plan has a backup rule that satisfies the required frequency and retention period
     - identifier: dagreqi0i3fitenunuuo4q64t
@@ -220,7 +220,7 @@ backup:
     - name: "{{ AcceleratorPrefix }}-BackupVault"
       deploymentTargets:
         organizationalUnits:
-          # - Infrastructure
+          - Infrastructure
           # - Workloads/Dev
           # - Workloads/Test
           # - Workloads/Prod
