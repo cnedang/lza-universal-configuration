@@ -7,9 +7,9 @@
 enable: true
 organizationalUnits:
   - name: Security
-  - name: test-ou
+  # - name: test-ou
   - name: Infrastructure
-  - name: dev
+  # - name: dev
     ignore: true
   - name: test-ou/test1-ou
   - name: lza-stuffs
@@ -32,7 +32,7 @@ declarativePolicies:
         - Workloads/Dev
         - Workloads/Test
         - Workloads/Prod
-        - test-ou
+        # - test-ou
       accounts:
         - Network
         - SharedServices
@@ -45,7 +45,7 @@ resourceControlPolicies:
       organizationalUnits:
         - Infrastructure
         - Security
-        - test-ou
+        # - test-ou
 serviceControlPolicies:
   - name: "{{ AcceleratorPrefix }}-Core-Guardrails-1"
     description: >
@@ -56,7 +56,7 @@ serviceControlPolicies:
       organizationalUnits:
         - Infrastructure
         - Security
-        - test-ou
+        # - test-ou
   - name: "{{ AcceleratorPrefix }}-Core-Guardrails-2"
     description: >
       Restricts unauthorized modifications to security services (GuardDuty, SecurityHub, Macie), LZA managed resources and prevents the use of the root account.
